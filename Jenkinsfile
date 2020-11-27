@@ -17,16 +17,16 @@ pipeline {
         }
         stage ('Deploy to Staging'){
             steps {
-                build job: 'Deploy-to-staging'
+                build job: 'deploy-maven-project-to-staging'
             }
         }
         stage ('Deploy to Production'){
             steps{
                 timeout(time:5, unit:'DAYS'){
-                    input message:'Approve PRODUCTION Deployment?'
+                    input message:'Approve prod Deployment?'
                 }
 
-                build job: 'Deploy-to-Prod'
+                build job: 'deploy-maven-project-to-prod'
             }
             post {
                 success {
